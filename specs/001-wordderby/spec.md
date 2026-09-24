@@ -86,8 +86,7 @@ immediately start another round afterward, win or lose.
 
 - Word list nears exhaustion of unused words for a given length/category:
   the game must avoid repeating a word until the full pool has cycled
-  through [NEEDS CLARIFICATION: minimum pool size per round-size/category
-  before repeats are allowed, and exact cycling/reset rule].
+  through 75% of the total set.
 - A round is configured with 4 long words that could keep the alphabet from
   ever being exhausted before closing time in normal play — this is
   expected and not an edge case requiring special handling beyond Scenario
@@ -96,10 +95,7 @@ immediately start another round afterward, win or lose.
   playable, with an in-app fallback prompt on return (e.g., "your skates are
   waiting") instead of a push notification.
 - Reminders must respect quiet hours and the player's time zone and be
-  frequency-capped [NEEDS CLARIFICATION: exact quiet-hours window and
-  frequency cap values].
-- Daily "streak freeze": exact rules for how a freeze is earned/consumed
-  [NEEDS CLARIFICATION: streak freeze acquisition and consumption rules].
+  frequency-capped (default to three).
 
 ## Requirements *(mandatory)*
 
@@ -166,7 +162,7 @@ immediately start another round afterward, win or lose.
 - **FR-022**: The game MUST award points per round, with bonuses for fewer
   falls, more words solved, and faster completion.
 - **FR-023**: The game MUST offer a daily shared puzzle ("Daily WordDerby")
-  with a daily streak counter and a streak-freeze mechanic.
+  with a daily streak counter.
 - **FR-024**: The game MUST progress the skater's visible skill/appearance
   (e.g., "wobbly beginner" through higher tiers) based on cumulative player
   performance.
@@ -208,7 +204,7 @@ immediately start another round afterward, win or lose.
   simultaneous win).
 - **PlayerProfile**: Cumulative stats (win rate, best streak, average falls,
   favorite letters), skill-ladder tier, unlocked cosmetics, achievements,
-  daily streak count, and streak-freeze availability.
+  and daily streak count.
 - **ReminderPreference**: Player's opt-in status, quiet hours, time zone,
   and frequency cap for reminder notifications.
 - **WordPool**: The curated, screened, English-only source of puzzle words,
