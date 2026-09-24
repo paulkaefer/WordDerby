@@ -1,0 +1,104 @@
+:root {
+  --color-bg: #fef6e4;
+  --color-primary: #6246ea;
+  --color-secondary: #ff8b64;
+  --color-success: #2ec4b6;
+  --color-danger: #e4572e;
+  --color-text: #1b1b1e;
+  --color-surface: #ffffff;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --font-family: "Segoe UI", "Trebuchet MS", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+}
+
+button {
+  font-family: inherit;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-primary);
+  background: var(--color-surface);
+  color: var(--color-primary);
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+}
+
+button:hover:not(:disabled) {
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.alphabet-keyboard__key--correct {
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+/* Non-color cue: a check mark, not just green */
+.alphabet-keyboard__key--correct::after {
+  content: " ✓";
+}
+
+.alphabet-keyboard__key--wrong {
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+/* Non-color cue: an X mark, not just red */
+.alphabet-keyboard__key--wrong::after {
+  content: " ✕";
+}
+
+.word-blanks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 2rem;
+  letter-spacing: 0.25rem;
+}
+
+.word-blanks__letter--hidden {
+  color: var(--color-primary);
+}
+
+.word-blanks__letter--revealed {
+  color: var(--color-success);
+  font-weight: 700;
+}
+
+.skater {
+  transition: transform 200ms ease;
+}
+
+.skater--falling {
+  animation: skater-wobble 500ms ease;
+}
+
+@keyframes skater-wobble {
+  0% { transform: rotate(0deg); }
+  30% { transform: rotate(-12deg) translateY(4px); }
+  60% { transform: rotate(8deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skater,
+  .skater--falling {
+    animation: none !important;
+    transition: none !important;
+  }
+}
