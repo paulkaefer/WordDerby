@@ -1,4 +1,5 @@
 import type { Round } from "../engine/types";
+import { eventLog } from "../logging/eventLog";
 
 const STORAGE_KEY = "wordderby.round";
 
@@ -12,6 +13,7 @@ export function loadRound(): Round | null {
   try {
     return JSON.parse(raw) as Round;
   } catch {
+    eventLog.log("unexpected", { kind: "saved_round_corrupt" });
     return null;
   }
 }

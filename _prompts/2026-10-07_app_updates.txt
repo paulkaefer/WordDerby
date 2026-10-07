@@ -1,0 +1,15 @@
+We'd like to make a few changes to our app.
+1. Aesthetic changes
+	1a. currently it runs right up to the left page margin, and it's hard to see the first letters
+	1b. the animated figure is pretty basic, can we make it more cartoony?
+2. Word list improvements:
+	2a. significantly longer lists by category
+	2b. More categories
+	2c. Way to select categories (as well as options for random/all)
+3. add event logging. rules:
+	3a. The log must be immutable and must contain ISO 8601 timestamps.
+	3b. all game events should be logged. game start/end, each guess (include "strikes" remaining), when word completed, user behavior such as changing active window/minimizing/etc.
+	3c. any unexpected behavior
+
+Please feel free to take some liberties into anything we haven't considered, but give us a summary.
+

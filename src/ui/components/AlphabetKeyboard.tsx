@@ -14,6 +14,7 @@ const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 export function AlphabetKeyboard({ guessedLetters, onGuess, feedback }: AlphabetKeyboardProps) {
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
       const letter = event.key.toUpperCase();
       if (/^[A-Z]$/.test(letter)) onGuess(letter);
     }
