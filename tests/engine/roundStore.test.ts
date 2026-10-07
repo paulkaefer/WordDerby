@@ -16,6 +16,12 @@ describe("roundStore", () => {
     expect(loadRound()).toBeNull();
   });
 
+  it("discards a saved round with a bad shape instead of returning it", () => {
+    localStorage.setItem("wordderby.round", JSON.stringify({ words: null, status: "in_progress" }));
+    expect(loadRound()).toBeNull();
+    expect(localStorage.getItem("wordderby.round")).toBeNull();
+  });
+
   it("clearRound removes the persisted round", () => {
     const round = startRound({ wordTexts: ["CAT"], closingAtSteps: 6 });
     saveRound(round);
