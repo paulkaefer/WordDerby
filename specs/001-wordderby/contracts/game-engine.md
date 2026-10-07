@@ -60,6 +60,31 @@ excluded from selection unless its category/length bucket has already used
 selection exists, falls back to least-recently-used words rather than
 throwing.
 
+## `categories.ts`
+
+```ts
+function listCategories(entries: WordEntry[]): string[];
+function filterByCategories(
+  entries: WordEntry[],
+  selection: CategorySelection,
+  rng?: () => number,
+): { entries: WordEntry[]; categories: string[] };
+```
+
+**Invariants**: `"random"` yields exactly one category; unknown categories
+are ignored; an empty result falls back to all categories (FR-035).
+
+## `logging/eventLog.ts`
+
+```ts
+function createEventLog(storage: LogStorage | null, now?: () => Date): EventLog;
+function verifyLog(events: readonly LogEvent[]): number; // -1 if intact
+```
+
+**Invariants**: entries are deep-frozen and append-only; timestamps are ISO
+8601; each entry hashes its predecessor; load/persist failures are logged as
+`unexpected` and never throw into the game (FR-036–FR-038).
+
 ## `dailyPuzzle.ts`
 
 ```ts

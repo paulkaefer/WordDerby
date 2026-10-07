@@ -68,6 +68,20 @@ acceptance scenarios before/alongside automated tests.
     still fully playable and shows the in-app fallback prompt on return
     instead (FR-021).
 
+## Categories, logging, visuals
+
+- Open the "Word categories" panel, choose "Pick categories" with one
+  category, finish the round, start another → all words come from it
+  (FR-035). Try "Random" and "All" too; reload and confirm the choice
+  persisted.
+- Make a wrong guess → skater tumbles with a surprised face and recovers;
+  with reduced motion on, no animation (FR-039, FR-031).
+- Confirm content has comfortable margins at narrow and wide window sizes.
+- Play a round, switch tabs, minimize, then click "Download event log" →
+  file has ISO 8601 timestamps, guesses with `strikesRemaining`,
+  `word_completed`, `round_end`, and window events (FR-036, FR-037).
+- Press Ctrl+R / Ctrl+C → no guess is registered (FR-040).
+
 ## Gamification
 
 20. Complete a flawless (no-fall) round → confirm the "Flawless Lap"

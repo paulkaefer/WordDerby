@@ -80,3 +80,22 @@ the engine before being added again (FR-008); the engine returns a
 **Selection invariant**: selection MUST fail closed — if a valid,
 non-repeating selection cannot satisfy FR-014/FR-018, the pool falls back to
 allowing the least-recently-used word rather than blocking round creation.
+
+## CategorySelection
+
+| Field | Type | Notes |
+|---|---|---|
+| `mode` | `"all" \| "random" \| "selected"` | Default `"all"` (FR-035) |
+| `categories` | `string[]` | Used only for `"selected"`; unknown names ignored; empty → all |
+
+## EventLogEntry
+
+| Field | Type | Notes |
+|---|---|---|
+| `seq` | number | 0-based, contiguous |
+| `timestamp` | string | ISO 8601 UTC (FR-036) |
+| `sessionId` | string | Per page load |
+| `type` | string | e.g. `guess`, `word_completed`, `round_end`, `window_visibility`, `unexpected` |
+| `data` | object | Deep-frozen payload (guesses include `falls`, `strikesRemaining`) |
+| `prevHash` / `hash` | string | Hash chain; `verifyLog` reports the first broken entry |
+

@@ -186,6 +186,33 @@ immediately start another round afterward, win or lose.
   all times (see project constitution).
 - **FR-033**: This version MUST exclude multiplayer, player-authored puzzle
   words, and non-English languages.
+- **FR-034**: The word list MUST be organized into named categories (at
+  least 10), each large enough to supply many distinct rounds (at least 20
+  words per category).
+- **FR-035**: The player MUST be able to choose which categories feed the
+  next round: all categories, one random category per round, or a
+  player-picked subset. The choice MUST persist, MUST NOT alter a round in
+  progress, and an empty or invalid pick MUST fall back to all categories.
+- **FR-036**: The game MUST keep an append-only, immutable event log. Every
+  entry MUST carry an ISO 8601 timestamp, and entries MUST NOT be editable
+  or deletable through the game; tampering with stored history MUST be
+  detectable.
+- **FR-037**: The event log MUST record: session start; round start, resume
+  and end (with result); every guess with its outcome, falls used and
+  strikes remaining; each word completed; category selection changes;
+  window/tab behavior (focus, blur, visibility change/minimize, page hide,
+  online/offline); and log exports.
+- **FR-038**: The event log MUST also record any unexpected behavior
+  (uncaught errors, unhandled promise rejections, render failures, corrupt
+  saved state, invalid input that should be unreachable, actions on a
+  finished round, log persistence/integrity failures). The player MUST be
+  able to export the log.
+- **FR-039**: Content must not run flush against the page edge (adequate
+  margins on all viewport sizes), and the skater MUST be a cartoony,
+  expressive character (idle animation, surprised face and tumble on a
+  fall) that still respects FR-031 and FR-032.
+- **FR-040**: Keyboard shortcuts using Ctrl, Alt or Meta modifiers MUST NOT
+  be interpreted as letter guesses.
 
 ### Key Entities
 
@@ -210,6 +237,11 @@ immediately start another round afterward, win or lose.
 - **WordPool**: The curated, screened, English-only source of puzzle words,
   tracking which words have been used recently to avoid repeats until the
   pool cycles.
+- **CategorySelection**: The player's choice of word categories (all,
+  random, or a picked subset) used to build the next round's pool.
+- **EventLogEntry**: One immutable log record: sequence number, ISO 8601
+  timestamp, session id, event type, event data, and a link to the previous
+  entry for tamper detection.
 
 ## Review & Acceptance Checklist
 

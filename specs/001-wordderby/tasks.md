@@ -137,6 +137,23 @@ file or have a dependency and must run in sequence.
 - [ ] **T040** Update repository README with setup/run/test instructions
   once the above tasks are complete
 
+## Phase 3.7: Update 2026-10-07 (categories, logging, visuals)
+
+- [x] **T041** Layout: centered column with side padding; wrapping keyboard
+  (FR-039)
+- [x] **T042** Redraw `Skater` as an expressive cartoony character with idle,
+  fall and reduced-motion behavior (FR-039)
+- [x] **T043** Expand `src/data/words.json` to 13 categories / 500+ words via
+  `scripts/buildWords.mjs` (FR-034)
+- [x] **T044** `src/engine/categories.ts` + `src/persistence/selectionStore.ts`
+  + `CategoryPicker` UI + tests (FR-035)
+- [x] **T045** `src/logging/eventLog.ts` immutable hash-chained log + tests
+  (FR-036)
+- [x] **T046** Instrument `RoundScreen`, `roundStore` and `App` for game events
+  and unexpected behavior; `activityMonitor.ts` for window behavior; log
+  export button (FR-037, FR-038)
+- [x] **T047** Ignore Ctrl/Alt/Meta key combos in `AlphabetKeyboard` (FR-040)
+
 ## Dependencies Summary
 
 - Setup (T001–T005) before all tests and implementation.
