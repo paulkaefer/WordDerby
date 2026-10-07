@@ -6,6 +6,8 @@ interface CategoryPickerProps {
   onChange: (selection: CategorySelection) => void;
   /** Open by default (e.g. between rounds). */
   defaultOpen?: boolean;
+  /** When set, shows a button that abandons the current round and starts a new one now. */
+  onStartNow?: () => void;
 }
 
 const MODES: { value: CategoryMode; label: string }[] = [
@@ -22,6 +24,7 @@ export function CategoryPicker({
   selection,
   onChange,
   defaultOpen = false,
+  onStartNow,
 }: CategoryPickerProps) {
   const toggle = (c: string) => {
     const has = selection.categories.includes(c);
@@ -64,6 +67,11 @@ export function CategoryPicker({
             ))}
           </div>
         </fieldset>
+      )}
+      {onStartNow && (
+        <button type="button" onClick={onStartNow}>
+          Start a new round now with these categories
+        </button>
       )}
     </details>
   );

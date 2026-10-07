@@ -5,6 +5,8 @@ export type LogEventType =
   | "session_start"
   | "round_start"
   | "round_resumed"
+  | "round_abandoned"
+  | "solve_used"
   | "guess"
   | "word_completed"
   | "round_end"

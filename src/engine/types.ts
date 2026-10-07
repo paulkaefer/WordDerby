@@ -38,6 +38,8 @@ export interface Round {
   status: RoundStatus;
   startedAt: number;
   updatedAt: number;
+  /** True if the player used the instant-solve button; excluded from scoring. */
+  assisted?: boolean;
 }
 
 export interface RoundConfig {

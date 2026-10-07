@@ -81,6 +81,14 @@ acceptance scenarios before/alongside automated tests.
   file has ISO 8601 timestamps, guesses with `strikesRemaining`,
   `word_completed`, `round_end`, and window events (FR-036, FR-037).
 - Press Ctrl+R / Ctrl+C → no guess is registered (FR-040).
+- Finish a round (win and loss) → all words stay visible; on a loss the
+  missed letters are shown with a wavy underline (FR-041).
+- Mid-round, open "Word categories" and press "Start a new round now" → a
+  new round starts from the selected categories; log has `round_abandoned`
+  (FR-042).
+- Press "Solve it for me (no score)" → end screen says "Solved with a little
+  help", log has `solve_used` and `round_end` with `assisted: true`
+  (FR-043).
 
 ## Gamification
 

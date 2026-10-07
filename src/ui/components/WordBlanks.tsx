@@ -2,11 +2,13 @@ import type { Word } from "../../engine/types";
 
 interface WordBlanksProps {
   words: Word[];
+  /** Show every letter (end of round); letters the player never found are marked as missed. */
+  revealAll?: boolean;
 }
 
 /** Renders each word's letters as revealed characters or hidden blanks.
  * State is conveyed via text/aria labels, never color alone (FR-029). */
-export function WordBlanks({ words }: WordBlanksProps) {
+export function WordBlanks({ words, revealAll = false }: WordBlanksProps) {
   return (
     <div className="word-blanks" role="group" aria-label="Puzzle words">
       {words.map((word, wordIndex) => (
@@ -25,6 +27,17 @@ export function WordBlanks({ words }: WordBlanksProps) {
                   key={slotIndex}
                   className="word-blanks__letter word-blanks__letter--revealed"
                   aria-label={`revealed letter ${slot.char}`}
+                >
+                  {slot.char}
+                </span>
+              );
+            }
+            if (revealAll) {
+              return (
+                <span
+                  key={slotIndex}
+                  className="word-blanks__letter word-blanks__letter--missed"
+                  aria-label={`missed letter ${slot.char}`}
                 >
                   {slot.char}
                 </span>

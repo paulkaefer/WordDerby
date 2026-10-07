@@ -33,6 +33,10 @@ export function scoreRound(round: Round): {
   const elapsed = round.updatedAt - round.startedAt;
   const speed = round.status === "won" && elapsed <= SPEED_BONUS_MS;
 
+  if (round.assisted) {
+    return { points: 0, bonuses: { fewFalls: false, wordsSolved, speed: false } };
+  }
+
   let points = wordsSolved * POINTS_PER_WORD;
   if (fewFalls) points += FEW_FALLS_BONUS;
   if (speed) points += SPEED_BONUS;
@@ -41,6 +45,8 @@ export function scoreRound(round: Round): {
 }
 
 export function updateAchievements(profile: PlayerProfile, round: Round): PlayerProfile {
+  if (round.assisted) return profile;
+
   const won = round.status === "won";
   const stats = { ...profile.stats };
 

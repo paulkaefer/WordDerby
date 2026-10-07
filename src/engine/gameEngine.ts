@@ -95,3 +95,13 @@ export function guessLetter(round: Round, rawInput: string): GuessResult {
 
   return { round: next, outcome };
 }
+
+/** Reveals everything and ends the round as a win flagged `assisted` (no score/stats). */
+export function solveRound(round: Round): Round {
+  if (round.status !== "in_progress") return round;
+  const words = round.words.map((word) => ({
+    ...word,
+    letters: word.letters.map((slot) => ({ ...slot, revealed: true })),
+  }));
+  return { ...round, words, status: "won", assisted: true, updatedAt: Date.now() };
+}

@@ -201,7 +201,7 @@ immediately start another round afterward, win or lose.
   and end (with result); every guess with its outcome, falls used and
   strikes remaining; each word completed; category selection changes;
   window/tab behavior (focus, blur, visibility change/minimize, page hide,
-  online/offline); and log exports.
+  online/offline); round abandonment; use of instant solve; and log exports.
 - **FR-038**: The event log MUST also record any unexpected behavior
   (uncaught errors, unhandled promise rejections, render failures, corrupt
   saved state, invalid input that should be unreachable, actions on a
@@ -213,6 +213,20 @@ immediately start another round afterward, win or lose.
   fall) that still respects FR-031 and FR-032.
 - **FR-040**: Keyboard shortcuts using Ctrl, Alt or Meta modifiers MUST NOT
   be interpreted as letter guesses.
+- **FR-041**: When a round ends, all of its words MUST remain visible on the
+  end screen (this is a learning game). On a loss, letters the player never
+  found MUST be shown and distinguished from found letters without relying
+  on color alone.
+- **FR-042**: The player MUST be able to start a new round immediately using
+  the currently selected categories, without finishing the round in
+  progress. Abandoning a round this way MUST be logged and MUST NOT count as
+  a win or loss.
+- **FR-043**: The game MUST offer a control to instantly solve the current
+  round. Such a round ends as a win flagged "assisted": it MUST award no
+  points, bonuses, achievements, streak or stat updates, MUST be labeled as
+  assisted on the end screen, and MUST be logged (`solve_used`, and
+  `round_end` with `assisted: true`). Whether this stays in the shipped
+  game (versus a test-only control) is an open product question.
 
 ### Key Entities
 

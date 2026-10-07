@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { guessLetter, startRound } from "../../engine/gameEngine";
+import { guessLetter, solveRound, startRound } from "../../engine/gameEngine";
 import { createWordPool, selectWords } from "../../engine/wordPool";
 import {
   filterByCategories,
@@ -56,6 +56,7 @@ function logRoundEnd(round: Round) {
     wordsSolved: round.words.filter(isWordFullyRevealed).length,
     wordCount: round.words.length,
     durationMs: Date.now() - round.startedAt,
+    assisted: Boolean(round.assisted),
   });
 }
 
@@ -160,12 +161,39 @@ export function RoundScreen({ onPlayAgain }: RoundScreenProps) {
     onPlayAgain?.();
   }, [onPlayAgain, selection]);
 
+  const handleSolve = useCallback(() => {
+    if (round.status !== "in_progress") return;
+    eventLog.log("solve_used", {
+      roundId: round.id,
+      falls: round.fallCount,
+      strikesRemaining: strikesRemaining(round),
+      guessedCount: round.guessedLetters.length,
+    });
+    const solved = solveRound(round);
+    setRound(solved);
+    logRoundEnd(solved);
+    clearRound();
+  }, [round]);
+
+  const handleStartNow = useCallback(() => {
+    if (round.status === "in_progress") {
+      eventLog.log("round_abandoned", {
+        roundId: round.id,
+        falls: round.fallCount,
+        strikesRemaining: strikesRemaining(round),
+        guessedCount: round.guessedLetters.length,
+      });
+    }
+    handlePlayAgain();
+  }, [round, handlePlayAgain]);
+
   const picker = (
     <CategoryPicker
       categories={ALL_CATEGORIES}
       selection={selection}
       onChange={handleSelection}
       defaultOpen={round.status !== "in_progress"}
+      onStartNow={round.status === "in_progress" ? handleStartNow : undefined}
     />
   );
 
@@ -189,6 +217,9 @@ export function RoundScreen({ onPlayAgain }: RoundScreenProps) {
         feedback={feedback}
       />
       {picker}
+      <button type="button" onClick={handleSolve}>
+        Solve it for me (no score)
+      </button>
     </div>
   );
 }

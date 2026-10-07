@@ -13,6 +13,7 @@ Represents a single play session.
 | `fallCount` | number | Count of wrong guesses this round |
 | `status` | `"in_progress" \| "won" \| "lost"` | Terminal states never framed as "game over" |
 | `startedAt` / `updatedAt` | timestamp | Used for resume (FR-017) and speed bonus scoring |
+| `assisted` | boolean (optional) | Set by instant solve; excluded from points, stats, achievements (FR-043) |
 
 **Transitions**:
 - `in_progress → won`: all `words[].revealed` fully true (FR-009); takes

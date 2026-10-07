@@ -137,6 +137,12 @@ button:disabled {
   gap: 0.4rem;
 }
 
+.word-blanks__letter--missed {
+  color: var(--color-danger);
+  font-weight: 700;
+  text-decoration: underline wavy;
+}
+
 .skater {
   display: inline-block;
 }

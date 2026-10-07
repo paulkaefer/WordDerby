@@ -13,7 +13,14 @@ function guessLetter(round: Round, letter: string): {
   round: Round;
   outcome: "correct" | "wrong" | "repeat" | "invalid";
 };
+
+function solveRound(round: Round): Round;
 ```
+
+`solveRound` reveals all words and returns a `"won"` round with
+`assisted: true`; a finished round is returned unchanged. `scoreRound`
+returns 0 points and `updateAchievements` returns the profile unchanged for
+assisted rounds (FR-043).
 
 **Invariants**:
 - `guessLetter` MUST validate `letter` is a single A–Z character before

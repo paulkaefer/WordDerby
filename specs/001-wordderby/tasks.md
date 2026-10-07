@@ -153,6 +153,15 @@ file or have a dependency and must run in sequence.
   and unexpected behavior; `activityMonitor.ts` for window behavior; log
   export button (FR-037, FR-038)
 - [x] **T047** Ignore Ctrl/Alt/Meta key combos in `AlphabetKeyboard` (FR-040)
+- [x] **T048** Validate saved-round shape in `roundStore.loadRound`; discard
+  and log invalid data (fixes crash on stale storage)
+- [x] **T049** End screen keeps words visible; `WordBlanks` `revealAll` marks
+  missed letters (FR-041)
+- [x] **T050** "Start a new round now" in `CategoryPicker`; log
+  `round_abandoned` (FR-042)
+- [x] **T051** `solveRound` engine function, `assisted` flag on `Round`,
+  scoring/achievement exclusion, solve button + `solve_used` log, tests
+  (FR-043)
 
 ## Dependencies Summary
 
