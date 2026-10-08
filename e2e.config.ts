@@ -1,4 +1,4 @@
-import type { E2EConfig } from 'e2e';
+﻿import type { E2EConfig } from 'e2e';
 import { web } from '@e2e-dev/web';
 import { gateway } from 'ai';
 
@@ -8,14 +8,22 @@ export default {
     default: {
       model: gateway('openai/gpt-6-luna-fast'),
       system: 'You are a thorough QA agent. Verify every outcome.',
+      context:
+        'WordDerby is a multi-word letter-guessing game. Letters are guessed with on-screen A-Z buttons. ' +
+        'Wrong guesses make the skater fall and use up "falls" before the rink closes. ' +
+        'Hidden letters show as thick blank lines.',
     },
   },
   targets: [{
     engine: web(),
     app: {
-      url: process.env.APP_URL ?? 'http://localhost:3000',
-      // Or let the runner start the dev server:
-      // command: { executable: 'npm', args: ['run', 'dev'] },
+      url: 'http://127.0.0.1:0',
+      command: {
+        executable: 'npm',
+        args: ['run', 'dev', '--', '--host', '127.0.0.1', '--port', '{port}', '--strictPort'],
+        log: '.e2e/logs/app.log',
+      },
     },
   }],
 } satisfies E2EConfig;
+
