@@ -9,13 +9,15 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:e2e": "e2e run"
   },
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@e2e-dev/web": "^0.13.0",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
@@ -24,6 +26,8 @@
     "@typescript-eslint/eslint-plugin": "^8.8.1",
     "@typescript-eslint/parser": "^8.8.1",
     "@vitejs/plugin-react": "^4.3.2",
+    "ai": "^7.0.0",
+    "e2e": "^0.18.0",
     "eslint": "^8.57.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.12",
@@ -31,7 +35,8 @@
     "prettier": "^3.3.3",
     "typescript": "^5.6.2",
     "vite": "^5.4.8",
-    "vitest": "^2.1.2"
+    "vitest": "^2.1.2",
+    "zod": "^4.1.8"
   },
   "allowScripts": {
     "esbuild@0.21.5": true
