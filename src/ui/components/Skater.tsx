@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface SkaterProps {
   /** Increment this whenever a new fall occurs to retrigger the animation. */
@@ -18,7 +18,7 @@ function usePrefersReducedMotion(): boolean {
 }
 
 /** A gender-neutral, cartoony skater that wobbles on a fall and always gets
- * back up â€” never a harm/execution figure (constitution Principle I/II). */
+ * back up - never a harm/execution figure (constitution Principle I/II). */
 export function Skater({ fallSignal }: SkaterProps) {
   const reducedMotion = usePrefersReducedMotion();
   const [falling, setFalling] = useState(false);

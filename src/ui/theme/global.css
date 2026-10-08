@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --color-bg: #fef6e4;
   --color-primary: #6246ea;
   --color-secondary: #ff8b64;
@@ -50,7 +50,7 @@ button:disabled {
 
 /* Non-color cue: a check mark, not just green */
 .alphabet-keyboard__key--correct::after {
-  content: " âœ“";
+  content: " \2713";
 }
 
 .alphabet-keyboard__key--wrong {
@@ -60,24 +60,51 @@ button:disabled {
 
 /* Non-color cue: an X mark, not just red */
 .alphabet-keyboard__key--wrong::after {
-  content: " âœ•";
+  content: " \2715";
 }
 
 .word-blanks {
   display: flex;
   flex-direction: column;
+  gap: 2rem;
+  font-size: clamp(2.5rem, 9vw, 4.5rem);
+  line-height: 1.1;
+}
+
+.word-blanks__word {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
   gap: 0.5rem;
-  font-size: 2rem;
-  letter-spacing: 0.25rem;
+}
+
+/* Each slot is a fixed-width cell with a thick base line so letter edges are obvious. */
+.word-blanks__letter {
+  display: inline-block;
+  width: 1.1em;
+  text-align: center;
+  border-bottom: 0.12em solid currentColor;
+  border-radius: 0.04em;
+  padding-bottom: 0.05em;
 }
 
 .word-blanks__letter--hidden {
   color: var(--color-primary);
+  /* Hide the underscore glyph; the cell's base line is the blank. */
+  -webkit-text-fill-color: transparent;
 }
 
 .word-blanks__letter--revealed {
-  color: var(--color-success);
+  color: #0f7c72;
   font-weight: 700;
+}
+
+.word-blanks__punctuation {
+  display: inline-block;
+  min-width: 0.9em;
+  text-align: center;
+  font-weight: 700;
+  white-space: pre;
 }
 
 .app {
@@ -99,9 +126,6 @@ button:disabled {
   gap: 0.4rem;
 }
 
-.word-blanks__word {
-  white-space: pre;
-}
 
 .app__footer {
   margin-top: 2rem;
